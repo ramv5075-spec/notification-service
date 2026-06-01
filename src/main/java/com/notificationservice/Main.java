@@ -1,14 +1,10 @@
 package com.notificationservice;
 
-import com.notificationservice.consumer.NotificationConsumer;
+import com.notificationservice.kafka.*;
 import com.notificationservice.model.NotificationMessage;
-import com.notificationservice.producer.NotificationProducer;
-import com.notificationservice.queue.DeadLetterQueue;
-import com.notificationservice.queue.MessageQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -16,67 +12,62 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
-        log.info("=== notification service — phase 1 ===");
+        log.info("=== notification service — phase 2: kafka ===");
 
-        MessageQueue mainQueue  = new MessageQueue("main-queue", 1000);
-        MessageQueue retryQueue = new MessageQueue("retry-queue", 1000);
-        DeadLetterQueue dlq     = new DeadLetterQueue();
+        KafkaNotificationProducer producer = new KafkaNotificationProducer();
 
-        NotificationProducer producer = new NotificationProducer(mainQueue);
+        KafkaNotificationConsumer consumer1 = new KafkaNotificationConsumer(
+            "consumer-1",
+            List.of(KafkaConfig.TOPIC_NOTIFICATIONS, KafkaConfig.TOPIC_RETRY),
+            producer);
 
-        List<Thread> consumerThreads = new ArrayList<>();
-        List<NotificationConsumer> consumers = new ArrayList<>();
+        KafkaNotificationConsumer consumer2 = new KafkaNotificationConsumer(
+            "consumer-2",
+            List.of(KafkaConfig.TOPIC_NOTIFICATIONS, KafkaConfig.TOPIC_RETRY),
+            producer);
 
-        for (int i = 1; i <= 3; i++) {
-            NotificationConsumer consumer = new NotificationConsumer(
-                "consumer-" + i, mainQueue, retryQueue, dlq);
-            consumers.add(consumer);
-            Thread t = new Thread(consumer, "consumer-" + i);
-            consumerThreads.add(t);
-            t.start();
-        }
+        Thread t1 = new Thread(consumer1, "consumer-1");
+        Thread t2 = new Thread(consumer2, "consumer-2");
+        t1.start();
+        t2.start();
 
-        // retry consumer
-        NotificationConsumer retryConsumer = new NotificationConsumer(
-            "retry-consumer", retryQueue, retryQueue, dlq);
-        consumers.add(retryConsumer);
-        Thread retryThread = new Thread(retryConsumer, "retry-consumer");
-        consumerThreads.add(retryThread);
-        retryThread.start();
+        Thread.sleep(2000);
 
-        log.info("--- producing 100 messages ---");
-        for (int i = 0; i < 25; i++) {
-            producer.send(NotificationMessage.Type.EMAIL,
-                "user" + i + "@example.com", "Welcome!", "Hello user " + i);
-        }
-        for (int i = 0; i < 25; i++) {
-            producer.send(NotificationMessage.Type.SMS,
-                "+1908" + String.format("%07d", i), "Alert", "SMS message " + i);
-        }
-        for (int i = 0; i < 25; i++) {
-            producer.send(NotificationMessage.Type.PUSH,
-                "device-token-" + i, "Notification", "Push message " + i);
-        }
-        for (int i = 0; i < 25; i++) {
-            producer.send(NotificationMessage.Type.WEBHOOK,
-                "https://webhook.example.com/" + i, "Event", "{\"event\":\"test\"}");
-        }
+        log.info("--- producing 50 messages to kafka ---");
+        for (int i = 0; i < 15; i++)
+            producer.send(new NotificationMessage(
+                NotificationMessage.Type.EMAIL,
+                "user" + i + "@example.com", "Welcome!", "Hello " + i));
+        for (int i = 0; i < 15; i++)
+            producer.send(new NotificationMessage(
+                NotificationMessage.Type.SMS,
+                "+1908" + String.format("%07d", i), "Alert", "SMS " + i));
+        for (int i = 0; i < 10; i++)
+            producer.send(new NotificationMessage(
+                NotificationMessage.Type.PUSH,
+                "device-" + i, "Notification", "Push " + i));
+        for (int i = 0; i < 10; i++)
+            producer.send(new NotificationMessage(
+                NotificationMessage.Type.WEBHOOK,
+                "https://hook.example.com/" + i, "Event", "{\"id\":" + i + "}"));
 
-        Thread.sleep(3000);
+        producer.flush();
+        log.info("--- all 50 messages sent to kafka ---");
 
-        consumers.forEach(NotificationConsumer::stop);
-        consumerThreads.forEach(t -> {
-            try { t.join(1000); } catch (InterruptedException ignored) {}
-        });
+        Thread.sleep(5000);
+
+        consumer1.stop();
+        consumer2.stop();
+        t1.join(2000);
+        t2.join(2000);
+        producer.close();
 
         log.info("=== results ===");
-        log.info("Total produced:   {}", producer.getTotalProduced());
-        log.info("Main queue stats: {}", mainQueue.getStats());
-        log.info("Retry queue stats:{}", retryQueue.getStats());
-        log.info("DLQ size:         {}", dlq.size());
-        consumers.forEach(c ->
-            log.info("Consumer [{}] processed={} failed={}",
-                c.getConsumerId(), c.getTotalProcessed(), c.getTotalFailed()));
-        log.info("=== phase 1 complete ===");
+        log.info("Producer sent:          {}", producer.getTotalSent());
+        log.info("Consumer-1 processed:   {} failed: {} dlq: {}",
+            consumer1.getTotalProcessed(), consumer1.getTotalFailed(), consumer1.getTotalDLQ());
+        log.info("Consumer-2 processed:   {} failed: {} dlq: {}",
+            consumer2.getTotalProcessed(), consumer2.getTotalFailed(), consumer2.getTotalDLQ());
+        log.info("=== phase 2 complete ===");
     }
 }

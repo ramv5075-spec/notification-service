@@ -1,24 +1,14 @@
 package com.notificationservice.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import java.util.UUID;
 
 public class NotificationMessage {
 
-    public enum Status {
-        PENDING,      // waiting to be processed
-        PROCESSING,   // currently being processed
-        DELIVERED,    // successfully delivered
-        FAILED,       // failed, will retry
-        DEAD          // exhausted all retries, moved to DLQ
-    }
-
-    public enum Type {
-        EMAIL,
-        SMS,
-        PUSH,
-        WEBHOOK
-    }
+    public enum Status { PENDING, PROCESSING, DELIVERED, FAILED, DEAD }
+    public enum Type   { EMAIL, SMS, PUSH, WEBHOOK }
 
     private final String messageId;
     private final Type type;
@@ -31,34 +21,43 @@ public class NotificationMessage {
     private Instant lastAttemptAt;
 
     public NotificationMessage(Type type, String recipient, String subject, String payload) {
-        this.messageId    = UUID.randomUUID().toString();
-        this.type         = type;
-        this.recipient    = recipient;
-        this.subject      = subject;
-        this.payload      = payload;
-        this.createdAt    = Instant.now();
-        this.status       = Status.PENDING;
-        this.retryCount   = 0;
+        this.messageId     = UUID.randomUUID().toString();
+        this.type          = type;
+        this.recipient     = recipient;
+        this.subject       = subject;
+        this.payload       = payload;
+        this.createdAt     = Instant.now();
+        this.status        = Status.PENDING;
+        this.retryCount    = 0;
         this.lastAttemptAt = null;
     }
 
-    public void markProcessing() {
-        this.status        = Status.PROCESSING;
-        this.lastAttemptAt = Instant.now();
+    @JsonCreator
+    public NotificationMessage(
+            @JsonProperty("messageId")     String messageId,
+            @JsonProperty("type")          Type type,
+            @JsonProperty("recipient")     String recipient,
+            @JsonProperty("subject")       String subject,
+            @JsonProperty("payload")       String payload,
+            @JsonProperty("createdAt")     Instant createdAt,
+            @JsonProperty("status")        Status status,
+            @JsonProperty("retryCount")    int retryCount,
+            @JsonProperty("lastAttemptAt") Instant lastAttemptAt) {
+        this.messageId     = messageId;
+        this.type          = type;
+        this.recipient     = recipient;
+        this.subject       = subject;
+        this.payload       = payload;
+        this.createdAt     = createdAt;
+        this.status        = status;
+        this.retryCount    = retryCount;
+        this.lastAttemptAt = lastAttemptAt;
     }
 
-    public void markDelivered() {
-        this.status = Status.DELIVERED;
-    }
-
-    public void markFailed() {
-        this.retryCount++;
-        this.status = Status.FAILED;
-    }
-
-    public void markDead() {
-        this.status = Status.DEAD;
-    }
+    public void markProcessing() { this.status = Status.PROCESSING; this.lastAttemptAt = Instant.now(); }
+    public void markDelivered()  { this.status = Status.DELIVERED; }
+    public void markFailed()     { this.retryCount++; this.status = Status.FAILED; }
+    public void markDead()       { this.status = Status.DEAD; }
 
     public String getMessageId()      { return messageId; }
     public Type getType()             { return type; }

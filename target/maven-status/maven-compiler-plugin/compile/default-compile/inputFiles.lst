@@ -1,5 +1,8 @@
 /Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/Main.java
 /Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/consumer/NotificationConsumer.java
+/Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/kafka/KafkaConfig.java
+/Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/kafka/KafkaNotificationConsumer.java
+/Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/kafka/KafkaNotificationProducer.java
 /Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/model/NotificationMessage.java
 /Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/producer/NotificationProducer.java
 /Users/ramvasanthmahendran/Desktop/codespace/notification-service/src/main/java/com/notificationservice/queue/DeadLetterQueue.java

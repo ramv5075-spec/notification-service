@@ -1,6 +1,9 @@
 com/notificationservice/model/NotificationMessage$Type.class
+com/notificationservice/kafka/KafkaNotificationProducer.class
+com/notificationservice/kafka/KafkaNotificationConsumer.class
 com/notificationservice/producer/NotificationProducer.class
 com/notificationservice/model/NotificationMessage$Status.class
+com/notificationservice/kafka/KafkaConfig.class
 com/notificationservice/queue/DeadLetterQueue.class
 com/notificationservice/consumer/NotificationConsumer.class
 com/notificationservice/model/NotificationMessage.class
