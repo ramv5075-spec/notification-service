@@ -1,4 +1,6 @@
 com/notificationservice/api/NotificationController.class
+com/notificationservice/benchmark/NotificationLoadTester$BenchmarkResult.class
+com/notificationservice/benchmark/NotificationLoadTester.class
 com/notificationservice/kafka/KafkaNotificationConsumer.class
 com/notificationservice/producer/NotificationProducer.class
 com/notificationservice/queue/DeadLetterQueue.class
