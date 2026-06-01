@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.notificationservice.queue.MessageQueueTest" time="0.074" tests="5" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="24"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/test-classes:/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/classes:/Users/ramvasanthmahendran/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar:/Users/ramvasanthmahendran/.m2/repository/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar:/Users/ramvasanthmahendran/.m2/repository/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/surefire/surefirebooter-20260601151641889_3.jar /Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/surefire 2026-06-01T15-16-41_833-jvmRun1 surefire-20260601151641889_1tmp surefire_0-20260601151641889_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/test-classes:/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/classes:/Users/ramvasanthmahendran/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar:/Users/ramvasanthmahendran/.m2/repository/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar:/Users/ramvasanthmahendran/.m2/repository/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/ramvasanthmahendran/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/ramvasanthmahendran"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service/target/surefire/surefirebooter-20260601151641889_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="24.0.1+9-30"/>
+    <property name="user.name" value="ramvasanthmahendran"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="14.1.2"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/ramvasanthmahendran/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/_f/6y8dbxhs33s9s5xq068xn1nc0000gn/T/"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="user.dir" value="/Users/ramvasanthmahendran/Desktop/codespace/notification-service"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/ramvasanthmahendran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="24.0.1+9-30"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="68.0"/>
+  </properties>
+  <testcase name="deadLetterQueueTracksMessages" classname="com.notificationservice.queue.MessageQueueTest" time="0.057">
+    <system-out><![CDATA[15:16:42.245 [main] WARN com.notificationservice.queue.DeadLetterQueue -- Message 46d235e1-6b3e-4f5c-a696-e12860edaef5 moved to DLQ after 0 retries — type=PUSH recipient=device
+]]></system-out>
+  </testcase>
+  <testcase name="statsAreAccurate" classname="com.notificationservice.queue.MessageQueueTest" time="0.002">
+    <system-out><![CDATA[15:16:42.255 [main] INFO com.notificationservice.queue.MessageQueue -- Queue [test] initialized with capacity 10
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued 67ade558-94a3-421b-b83e-c1a2ad767c90 to [test] size=1
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued 8c8e69d7-5fd8-42fa-be7c-53aa8c0df9a1 to [test] size=2
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued c01de79b-53b7-4c78-a612-5b52e637c5d9 to [test] size=3
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued 4b682c31-601e-4114-b96a-76d12c726c9f to [test] size=4
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued e42dee2f-85e9-4a9c-b82b-4c294590ba63 to [test] size=5
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Dequeued 67ade558-94a3-421b-b83e-c1a2ad767c90 from [test] size=4
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Dequeued 8c8e69d7-5fd8-42fa-be7c-53aa8c0df9a1 from [test] size=3
+15:16:42.255 [main] DEBUG com.notificationservice.queue.MessageQueue -- Dequeued c01de79b-53b7-4c78-a612-5b52e637c5d9 from [test] size=2
+]]></system-out>
+  </testcase>
+  <testcase name="messageRetryCountIncrements" classname="com.notificationservice.queue.MessageQueueTest" time="0.001"/>
+  <testcase name="enqueueAndDequeue" classname="com.notificationservice.queue.MessageQueueTest" time="0.001">
+    <system-out><![CDATA[15:16:42.258 [main] INFO com.notificationservice.queue.MessageQueue -- Queue [test] initialized with capacity 10
+15:16:42.258 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued b234c1d5-8ffb-4ea2-8d02-450870dfc019 to [test] size=1
+15:16:42.258 [main] DEBUG com.notificationservice.queue.MessageQueue -- Dequeued b234c1d5-8ffb-4ea2-8d02-450870dfc019 from [test] size=0
+]]></system-out>
+  </testcase>
+  <testcase name="queueFullDropsMessage" classname="com.notificationservice.queue.MessageQueueTest" time="0.001">
+    <system-out><![CDATA[15:16:42.259 [main] INFO com.notificationservice.queue.MessageQueue -- Queue [test] initialized with capacity 2
+15:16:42.259 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued 92ddb4a1-6cc3-4451-8e3d-af744d2339b1 to [test] size=1
+15:16:42.259 [main] DEBUG com.notificationservice.queue.MessageQueue -- Enqueued 3657fcd1-b8d0-4dca-8f18-0f80d49b3939 to [test] size=2
+15:16:42.259 [main] WARN com.notificationservice.queue.MessageQueue -- Queue [test] is full! Dropped message 26d88a14-a51a-4b13-adab-7c63f6e2ba1e
+]]></system-out>
+  </testcase>
+</testsuite>
